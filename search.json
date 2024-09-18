@@ -98,5 +98,165 @@
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>플랫폼 연동 문서 업데이트</span>"
     ]
+  },
+  {
+    "objectID": "googlesheets.html",
+    "href": "googlesheets.html",
+    "title": "3  고객 서비스 업무 관련 구글 시트 연동",
+    "section": "",
+    "text": "3.1 목적",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>고객 서비스 업무 관련 구글 시트 연동</span>"
+    ]
+  },
+  {
+    "objectID": "googlesheets.html#목적",
+    "href": "googlesheets.html#목적",
+    "title": "3  고객 서비스 업무 관련 구글 시트 연동",
+    "section": "",
+    "text": "본 문서는 고객 서비스 업무 관련 구글 시트 연동 방법을 기술한 문서입니다.\n구글 시트 문서는 다음과 같다.\n\n수거 신청 대장\n토탈설치_피엘이엔지_배정_2024하반기\n맞춤커튼_엘엠엑스텍_배정_2024하반기\n설치 업체 배정_하반기 (도어락)\nK100 불량 및 문의 접수표_진행중",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>고객 서비스 업무 관련 구글 시트 연동</span>"
+    ]
+  },
+  {
+    "objectID": "googlesheets.html#준비-사항",
+    "href": "googlesheets.html#준비-사항",
+    "title": "3  고객 서비스 업무 관련 구글 시트 연동",
+    "section": "3.2 준비 사항",
+    "text": "3.2 준비 사항\n\n참고 사이트: https://develop-davi-kr.tistory.com/entry/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B5%AC%EA%B8%80-%EC%8A%A4%ED%94%84%EB%A0%88%EB%93%9C%EC%8B%9C%ED%8A%B8-%EC%97%B0%EB%8F%99-%EB%B0%8F-%EC%9E%90%EB%8F%99%ED%99%94-%EB%B0%A9%EB%B2%95#google_vignette\n\n\n\n구글 클라우드 서비스 가입 및 서비스 계정 생성 (https://console.cloud.google.com/apis/dashboard)\n\n사용자 인증 정보 &gt;&gt; 프로젝트 만들기\n사장자 인증 정보 만들기 &gt;&gt; 서비스 계정 생성\n서비스 계정의 이메일 정보 클릭 &gt;&gt; 키 생성\n비공개 키를 컴퓨터에 저장(json파일)\n서비스 계정에 생성된 이메일을 구글시트에서 공유 대상으로 지정\n\n구글 시트 API 연동\n\nAPI 및 서비스 &gt;&gt; 라이브러리 클릭 &gt;&gt; Google Sheet 검색 &gt;&gt; Google Sheets API 클릭 &gt;&gt; API 사용 클릭",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>고객 서비스 업무 관련 구글 시트 연동</span>"
+    ]
+  },
+  {
+    "objectID": "googlesheets.html#코드-분석",
+    "href": "googlesheets.html#코드-분석",
+    "title": "3  고객 서비스 업무 관련 구글 시트 연동",
+    "section": "3.3 코드 분석",
+    "text": "3.3 코드 분석\n\n3.3.1 공통 주요 정보\n\n3.3.1.1 .env 파일에서 환경 변수 로드\n#from dotenv import load_dotenv\n#import os\n#load_dotenv()\n\n\n3.3.1.2 Google Sheets API 인증 및 데이터 로드\n\n구글 시트 스프레드시트 ID: “d/”와 “/edit”사이의 문자\n\n예제&gt; https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxxxxx/edit?gid=xxxxx#gid=xxxxxxxx\n\n\n#from google.oauth2.service_account import Credentials\n#import gspread\n# Path to your service account JSON file\n#SERVICE_ACCOUNT_FILE = os.getenv('SERVICE_ACCOUNT_FILE')\n\n# Load credentials from the JSON file\n#creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=[os.getenv('SCOPES')])\n\n# Connect to Google Sheets\n#gc = gspread.authorize(creds)\n\n# Google Sheet ID and Worksheet name\n#SERVICE_SPREADSHEET_ID = os.getenv('SERVICE_SPREADSHEET_ID')\n#SERVICE_WORKSHEET_NAME = os.getenv('SERVICE_WORKSHEET_NAME')  # Replace with your worksheet name\n\nGoogle Sheets API 인증: Google Sheets API를 사용하기 위해 JSON 자격 증명 파일을 통해 인증을 수행합니다.\ngspread 라이브러리: Google Sheets의 데이터에 접근하기 위한 Python 라이브러리로, authorize() 메서드를 사용해 Google Sheets에 접근합니다.\n\n\n\n\n3.3.2 수거 신청 대장\n\n3.3.2.1 구글 시트 데이터 로딩 및 정리\n#def load_sheet_data():\n#    worksheet = gc.open_by_key(SERVICE_SPREADSHEET_ID).worksheet(SERVICE_WORKSHEET_NAME)\n#    all_values = worksheet.get_all_values()\n#    headers = all_values[2]  # 3번째 줄을 헤더로 사용\n#    data = all_values[3:]    # 데이터는 4번째 줄부터 시작\n#    df = pd.DataFrame(data, columns=headers)\n#    df.replace('', np.nan, inplace=True)\n#    df.dropna(subset=['고객명'], inplace=True)\n#    df.columns = make_unique_columns(list(df.columns))\n#    return df\n\n\n목적: Google Sheets에서 데이터를 불러와 Pandas DataFrame으로 변환합니다.\n주요 동작:\n• 첫 두 줄을 건너뛰고, 3번째 줄을 헤더로 사용하며 4번째 줄부터 데이터를 불러옵니다.\n• 빈 문자열을 NaN으로 대체하고, ‘고객명’ 열이 비어있는 행은 제거합니다.\n• make_unique_columns(): 중복된 열 이름이 있을 경우, 이를 고유하게 변경합니다.sk\n\n\n\n3.3.2.2 날짜 파싱 및 형식화\n#for idx, row in df.iterrows():\n#    date_str = row['작성일']\n#    if pd.isna(date_str):\n#        continue\n#    try:\n#        if re.match(r'^\\d{4}\\.\\d{1,2}\\.\\d{1,2}$', date_str):\n#            df.at[idx, 'registered_date'] = pd.to_datetime(date_str, format='%Y.%m.%d')\n# 추가적인 정규 표현식 패턴들\n#    except Exception as e:\n#        df.at[idx, 'registered_date'] = None\n\n목적: 다양한 날짜 형식을 표준화된 날짜 형식으로 변환합니다.\n• 정규 표현식 매칭: 다양한 날짜 형식을 re.match()로 탐지한 후, 이를 pd.to_datetime()을 사용해 변환합니다.\n• 오류 처리: 만약 변환에 실패하거나 형식이 일치하지 않으면 날짜를 None으로 설정합니다.\n\n\n\n\n3.3.3 토탈 설치 서비스\n\n3.3.3.1 Pandas DataFrame으로 데이터 처리\n#df = pd.DataFrame(data[2:], columns=[\n#    'registered_date', '출고날짜', '고객명', '연락처', '주문번호', '주소', '구매품목',\n#    '도어락', '도어벨', '조명스위치', '커튼', '내용확인', '기사님성함', '해피콜예정일', \n#    '설치예정일', '설치완료여부', '유상', '비고_아카라', '비고_피엘'\n#])\n\n목적: Google Sheets에서 불러온 데이터를 Pandas DataFrame으로 변환합니다.\n컬럼 지정: 3번째 행부터 데이터를 읽고, 컬럼을 수동으로 지정해 DataFrame을 구성합니다.\n\n\n\n3.3.3.2 데이터 형식 변환 및 처리\n\n날짜 변환: 날짜 형식의 데이터를 pd.to_datetime()을 사용해 변환하며, 변환이 불가능한 값은 NaT로 설정합니다.\n\n#df['registered_date'] = pd.to_datetime(df['registered_date'], errors='coerce')\n#df['출고날짜'] = pd.to_datetime(df['출고날짜'], errors='coerce')\n#df['해피콜예정일'] = pd.to_datetime(df['해피콜예정일'], errors='coerce')\n#df['설치예정일'] = pd.to_datetime(df['설치예정일'], errors='coerce')\n\n숫자형 변환\n\n#boolean_columns = ['내용확인', '설치완료여부']\n#for col in boolean_columns:\n#    df[col] = df[col].apply(lambda x: True if x.lower() == 'true' else False)\n\n불리언 값 처리: 불리언 값을 처리해 ‘true’ 값을 True로, 그 외 값을 False로 변환합니다.\n\n\n\n\n3.3.4 맞춤형 커튼 설치\n\n3.3.4.1 데이터 전처리\n#data = [row[:17] for row in data]\n#header = data[0]\n#df = pd.DataFrame(data[1:], columns=header)\n\n#df.rename(columns={'665': '플랫폼', '날짜': 'registered_date'}, inplace=True)\n#df = df[df['플랫폼'].notna() & df['플랫폼'].str.strip().astype(bool) &\n#        df['상품주문번호'].notna() & df['상품주문번호'].str.strip().astype(bool) &\n#        (df['상품주문번호'] != '본사 촬영용')]\n\n#df.reset_index(drop=True, inplace=True)\n\n데이터 전처리: 불필요한 컬럼을 제외하고 첫 17개의 컬럼만 선택합니다.\n컬럼명 변경: ’665’라는 컬럼명을 ’플랫폼’으로, ’날짜’라는 컬럼명을 ’registered_date’로 변경합니다.\n필터링: ‘플랫폼’과 ‘상품주문번호’가 비어 있지 않은 행만 필터링하고, ‘본사 촬영용’ 데이터를 제외합니다.\n인덱스 초기화: 불필요한 인덱스를 제거하고 새로 설정합니다.\n\n\n\n3.3.4.2 날짜 처리\n#def adjust_year(date_str, index):\n#    try:\n#        date_obj = datetime.strptime(date_str, \"%m/%d\")\n#    except ValueError:\n#        return None\n    \n#    if index &lt;= 262:\n#        return date_obj.replace(year=2023)\n#    else:\n#        return date_obj.replace(year=2024)\n\n#df['registered_date'] = df.apply(lambda row: adjust_year(row['registered_date'], row.name), #axis=1)\n\n날짜 조정: 날짜가 “월/일” 형식일 때 해당하는 연도를 인덱스에 따라 다르게 설정합니다.\n인덱스가 262 이하일 경우 2023년, 그 외에는 2024년으로 연도를 설정합니다.\n\n\n\n\n3.3.5 도어락 설치업체 배정\n\n3.3.5.1 데이터 전처리\n#df = pd.DataFrame(data[1:])\n#df = df.iloc[:,1:22]\n#required_columns =[\n#    'registered_date', '주문처', '지역1', '지역2', '지점', '설치', '기사연락처', '비용', #'청구월', '증빙유형', \n#    '추가비용', '청구월2', '지급기안', '설치여부', '이름', '연락처', '주소', '상품명', #'상품옵션', '배송메시지', '특이사항'\n#]\n#df.columns = required_columns\n\n데이터 프레임 생성: Google Sheets에서 가져온 데이터를 Pandas DataFrame으로 변환합니다.\n필요한 컬럼 설정: 필요한 21개의 열을 선택하고, 컬럼 이름을 적절하게 설정합니다.\n\n\n\n3.3.5.2 날짜 형식 변환\n#def parse_registered_date(date_str):\n#    date_formats = ['%Y/ %m/ %d', '%Y/%m/%d', '%Y. %m. %d','%Y. %m.%d']\n#    for date_format in date_formats:\n#        try:\n#            return pd.to_datetime(date_str, format=date_format, errors='raise')\n#        except (ValueError, TypeError):\n#            continue\n#    return None\n#df['registered_date'] = df['registered_date'].apply(parse_registered_date)\n\nparse_registered_date() 함수: 다양한 날짜 형식을 처리할 수 있도록 여러 날짜 포맷을 시도하여 문자열을 datetime 형식으로 변환합니다.\n\n\n\n3.3.5.3 비용 값 처리\n#def clean_cost_value(value):\n#    if isinstance(value, str):\n#        cleaned_value = value.replace('₩', '').replace(',', '')\n#        if cleaned_value.isdigit():\n#            return float(cleaned_value)\n#        else:\n#            return None\n#    return None if pd.isna(value) else value\n\n비용 값 처리: ‘₩’ 및 ’,’를 제거하고, 숫자로 변환 가능한 값을 float 형식으로 변환합니다. 값이 숫자가 아니면 None으로 반환합니다.\n\n\n\n\n3.3.6 도어락 설치 파트너\n\n3.3.6.1 데이터 전처리\n# Add 'registered_date' column\n#registered_date = pd.to_datetime('2024.02.19')\n#df.insert(0, 'registered_date', registered_date)\n\n# 컬럼명 설정\n#required_columns = ['registered_date', '지역1', '지역2', '대리점', '담당자코드', '대표', #'연락처', '주소', '사업자등록번호', '은행', '계좌', '소유자명', '세금계산서', '플라자', #'기타']\n#df.columns = required_columns\n\n# '연락처'가 없는 행 제거 및 NaN 값을 None으로 변환\n#df['연락처'] = df['연락처'].replace(r'^\\s*$', np.nan, regex=True)\n#df = df.dropna(subset=['연락처'])\n#df = df.replace({np.nan: None})\n\n등록 날짜(registered_date)를 특정 날짜로 추가합니다.\n필요한 컬럼을 지정하고 데이터 정리 및 빈 칸 처리를 수행합니다.\nNaN 값을 Python의 None 값으로 변환하여 SQL 삽입 시 문제가 발생하지 않도록 합니다.\n\n\n\n\n3.3.7 도어락 불량 등록\n\n3.3.7.1 Pandas DataFrame 생성\n#data = sheet.get_all_values()\n#df = pd.DataFrame(data[6:])  # 데이터는 7번째 행부터 시작\n#df = df.iloc[:, 2:14]  # 3번째 열부터 14번째 열까지 사용\n#df.columns = required_columns  # 필수 열 설정\n\nGoogle Sheets에서 가져온 데이터를 Pandas DataFrame으로 변환하고, 필요한 열만 선택하여 사용합니다.\n\n\n\n3.3.7.2 데이터 전처리\n#df['registered_date'] = pd.to_datetime(df['registered_date'], errors='coerce')\n#df = df.replace(\"\", None)\n#df = df.dropna(subset=['고객명', '고객불량증상'], how='all')\n\n날짜 형식을 변환하고, 빈 문자열을 None으로 바꾸며, 고객명과 고객불량증상이 비어 있는 행은 삭제합니다.\n\n\n\n\n3.3.8",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>고객 서비스 업무 관련 구글 시트 연동</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html",
+    "href": "ollama.html",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "",
+    "text": "4.1 개요\n이 문서는 Streamlit, MySQL 데이터베이스, LangChain과 Ollama LLM을 결합하여 사용자가 데이터베이스와 상호작용할 수 있는 AI 기반 챗봇을 구현한 코드에 대한 설명을 제공한다.\nCS 업무와 관련된 모든 구글시트와 아카라 카페의 내용을 MySQL DB에 데이터베이스화 하였다.\n파일 또는 웹사이트 기반으로 RAG을 진행할 수 있으나 최종 목적은 DB의 내용 기반으로 RAG하는 것이다.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#ollama-설정-방법",
+    "href": "ollama.html#ollama-설정-방법",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.2 OLLAMA 설정 방법",
+    "text": "4.2 OLLAMA 설정 방법\n\n4.2.1 HuggingFaxe-Hub 설치\n#pip install huggingface-hub\n\n\n\n4.2.2 GGUF파일 다운로드\nhttps://huggingface.co/heegyu/EEVE-Korean-Instruct-10.8B-v1.0-GGUF\n#huggingface-cli download \\\n#  heegyu/EEVE-Korean-Instruct-10.8B-v1.0-GGUF \\\n#  ggml-model-Q5_K_M.gguf \\\n#  --local-dir 본인의_컴퓨터_다운로드폴더_경로 \\\n#  --local-dir-use-symlinks False\n\n\n4.2.3 Modelfile\n## EEVE-Korean-Instruct-10.8B-v1.0 예시\n\n#FROM ggml-model-Q5_K_M.gguf\n#\n#TEMPLATE \"\"\"{{- if .System }}\n#&lt;s&gt;{{ .System }}&lt;/s&gt;\n#{{- end }}\n#&lt;s&gt;Human:\n#{{ .Prompt }}&lt;/s&gt;\n#&lt;s&gt;Assistant:\n#\"\"\"\n#\n#SYSTEM \"\"\"A chat between a curious user and an artificial intelligence assistant. The #assistant gives helpful, detailed, and polite answers to the user's questions.\"\"\"\n#\n#PARAMETER stop &lt;s&gt;\n#PARAMETER stop &lt;/s&gt;\n\n\n4.2.4 OLLAMA 실행\n#ollama create EEVE-Korean-10.8B -f EEVE-Korean-Instruct-10.8B-v1.0-GGUF/Modelfile\n\n4.2.4.1 OLLAMA 모델 목록\n#ollama list\n\n\n4.2.4.2 OLLAMA 모델 실행\nollama run EEVE-Korean-10.8B:latest\n\n\n4.2.4.3 ngrok에서 터널링(포트 포워드)\n#streamlit default port: 8501\n#ngrok http localhost:8501",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#환경-설정-및-streamlit-페이지-구성",
+    "href": "ollama.html#환경-설정-및-streamlit-페이지-구성",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.3 환경 설정 및 Streamlit 페이지 구성",
+    "text": "4.3 환경 설정 및 Streamlit 페이지 구성\nfrom dotenv import load_dotenv\nload_dotenv()\n\n.env 파일에서 환경 변수를 로드하여 코드에서 민감한 정보를 안전하게 불러올 수 있다.\n\nst.set_page_config(page_title=\"MySQL DB GPT\", page_icon=\"🔒\", layout=\"wide\")\n\nStreamlit 페이지의 제목과 아이콘, 레이아웃을 설정한다.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#chatcallbackhandler",
+    "href": "ollama.html#chatcallbackhandler",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.4 ChatCallbackHandler",
+    "text": "4.4 ChatCallbackHandler\n# Custom callback handler inheriting from BaseCallbackHandler\nclass ChatCallbackHandler(BaseCallbackHandler):\n    message = \"\"\n\n    def on_llm_start(self, *args, **kwargs):\n        self.message_box = st.empty()\n\n    def on_llm_end(self, *args, **kwargs):\n        save_message(self.message, \"ai\")\n\n    def on_llm_new_token(self, token, *args, **kwargs):\n        self.message += token\n        self.message_box.markdown(self.message)\n\nLangChain의 콜백 핸들러를 사용하여 챗봇의 실시간 응답을 처리합니다. 메시지를 저장하고 업데이트하며, 실시간으로 토큰이 생성될 때마다 사용자에게 표시한다.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#ollama-llm-설정",
+    "href": "ollama.html#ollama-llm-설정",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.5 Ollama LLM 설정",
+    "text": "4.5 Ollama LLM 설정\nllm = ChatOllama(\n    model=\"EEVE-Korean-10.8B:latest\",\n    temperature=0.1,\n    streaming=True,\n    callbacks=[ChatCallbackHandler()],\n)\n\nOllama의 “EEVE-Korean-10.8B” 모델을 사용하여 질문에 답변한다.\ntemperature=0.1: 모델의 응답이 얼마나 창의적인지 조정한다.\nstreaming=True: 모델의 출력이 실시간으로 스트리밍되어 사용자에게 즉시 표시된다.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#mysql-테이블-불러오기",
+    "href": "ollama.html#mysql-테이블-불러오기",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.6 MySQL 테이블 불러오기",
+    "text": "4.6 MySQL 테이블 불러오기\ndef load_database_data(tables):\n    try:\n        connection = mysql.connector.connect(\n            host=db_host,\n            database=db_database,\n            user=db_user,\n            password=db_password,\n            charset='utf8mb4',\n            collation='utf8mb4_unicode_ci'\n        )\n\n        data_frames = {}\n        for table in tables:\n            query = f\"SELECT * FROM {table}\"\n            df = pd.read_sql(query, connection)\n            data_frames[table] = df\n\n        return data_frames\n\n    except mysql.connector.Error as err:\n        st.error(f\"Error connecting to MySQL: {err}\")\n        return None\n    finally:\n        if connection.is_connected():\n            connection.close()\n\nMySQL 데이터베이스에서 사용자가 선택한 테이블 데이터를 Pandas DataFrame으로 불러온다. 이 데이터는 AI에게 제공될 “컨텍스트”로 사용된다.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#데이터-테이블-선택-및-로드",
+    "href": "ollama.html#데이터-테이블-선택-및-로드",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.7 데이터 테이블 선택 및 로드",
+    "text": "4.7 데이터 테이블 선택 및 로드\ndef table_selector():\n    available_tables = [\"aqara_cafe\", \"cs_table\", \"doorlock_malfunction_ledger\", \"curtain_ledger\", \"installation_ledger\", \"service_ledger\"]\n    selected_tables = st.sidebar.multiselect(\"Select tables to load\", available_tables, default=available_tables)\n    \n    load_button = st.sidebar.button(\"Load selected tables\")\n    \n    if load_button:\n        data_frames = load_database_data(selected_tables)\n        st.session_state[\"data_frames\"] = data_frames\n        st.success(f\"Loaded data for tables: {', '.join(selected_tables)}\")\n\n    return st.session_state.get(\"data_frames\", {})\n\n사용자가 MySQL 데이터베이스에서 불러올 테이블을 선택할 수 있게 한다. Streamlit의 multiselect 위젯을 사용하여 여러 테이블을 선택하고, 그 데이터를 로드하여 session state에 저장한다.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#참고-1-file-embedding-하기",
+    "href": "ollama.html#참고-1-file-embedding-하기",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.8 (참고 1) File Embedding 하기",
+    "text": "4.8 (참고 1) File Embedding 하기\ndef embed_file(file):\n    # Define the directory path\n    directory = \"./private_files/\"\n    \n    # Create the directory if it does not exist\n    if not os.path.exists(directory):\n        os.makedirs(directory)\n    \n    # Save the file to the directory\n    file_path = os.path.join(directory, file.name)\n    \n    with open(file_path, \"wb\") as f:\n        f.write(file.read())\n    \n    cache_dir = LocalFileStore(f\"./private_embeddings/{file.name}\")\n    splitter = CharacterTextSplitter.from_tiktoken_encoder(\n        separator=\"\\n\",\n        chunk_size=600,\n        chunk_overlap=100,\n    )\n    \n    loader = UnstructuredFileLoader(file_path)\n    docs = loader.load_and_split(text_splitter=splitter)\n    \n    embeddings = OllamaEmbeddings(model=\"EEVE-Korean-10.8B:latest\")\n    cached_embeddings = CacheBackedEmbeddings.from_bytes_store(embeddings, cache_dir)\n    \n    vectorstore = FAISS.from_documents(docs, cached_embeddings)\n    retriever = vectorstore.as_retriever()\n    \n    return retriever",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#참고-2-webpage-embedding-하기",
+    "href": "ollama.html#참고-2-webpage-embedding-하기",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.9 (참고 2) Webpage Embedding 하기",
+    "text": "4.9 (참고 2) Webpage Embedding 하기\n# Function to scrape website pages and extract text\ndef scrape_website(url):\n    visited_urls = set()\n    base_url = url\n    texts = []\n\n    def scrape_page(current_url):\n        if current_url in visited_urls or not current_url.startswith(base_url):\n            return\n        visited_urls.add(current_url)\n\n        # Request the page\n        response = requests.get(current_url)\n        soup = BeautifulSoup(response.content, \"html.parser\")\n\n        # Extract text from the page\n        page_text = soup.get_text(separator=\"\\n\").strip()\n        texts.append(page_text)\n\n        # Find all links on the page and recursively scrape them\n        for link in soup.find_all(\"a\", href=True):\n            absolute_link = requests.compat.urljoin(base_url, link['href'])\n            if absolute_link not in visited_urls:\n                scrape_page(absolute_link)\n\n    scrape_page(base_url)\n    return texts",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#대화-기록-저장-및-표시",
+    "href": "ollama.html#대화-기록-저장-및-표시",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.10 대화 기록 저장 및 표시",
+    "text": "4.10 대화 기록 저장 및 표시\n# Function to save the conversation history\ndef save_message(message, role):\n    if \"messages\" not in st.session_state:\n        st.session_state[\"messages\"] = []\n    st.session_state[\"messages\"].append({\"message\": message, \"role\": role})\n\nStreamlit의 session state를 사용하여 사용자와 AI 간의 대화 기록을 저장하고 페이지를 새로고침해도 대화 기록이 유지되도록 한다.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#질문과-데이터-기반-응답-처리",
+    "href": "ollama.html#질문과-데이터-기반-응답-처리",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.11 질문과 데이터 기반 응답 처리",
+    "text": "4.11 질문과 데이터 기반 응답 처리\nprompt = ChatPromptTemplate.from_template(\n    \"\"\"Answer the question using ONLY the following context and not your training data.\n    If you don't know the answer just say you don't know. DON'T make anything up.\n    \n    Context: {context}\n    Question: {question}\n    \"\"\"\n)\n\nLangChain의 ChatPromptTemplate을 사용하여 AI가 훈련 데이터가 아닌, 제공된 데이터(컨텍스트)를 기반으로만 질문에 답변하도록 한다.\n\nmessage = st.chat_input(\"Ask anything about your database...\")\n...\nchain = (\n    {\n        \"context\": RunnableLambda(lambda _: context),\n        \"question\": RunnablePassthrough(),\n    }\n    | prompt\n    | llm\n)\nwith st.chat_message(\"ai\"):\n    chain.invoke(message)\n\n사용자의 질문을 입력받고, 데이터베이스에서 가져온 컨텍스트와 함께 AI에게 전달하여 답변을 생성한다.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
+  },
+  {
+    "objectID": "ollama.html#전체-워크플로우",
+    "href": "ollama.html#전체-워크플로우",
+    "title": "4  Local LLM - OLLAMA",
+    "section": "4.12 전체 워크플로우",
+    "text": "4.12 전체 워크플로우\n\n사용자는 MySQL 데이터베이스 테이블을 선택한다..\n선택된 데이터가 Pandas DataFrame으로 불러온다..\n사용자가 질문을 입력하면, AI가 데이터베이스에서 가져온 데이터를 바탕으로 답변을 제공한다.\n대화 기록이 유지되며, 이전 대화 내용을 확인할 수 있다.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Local LLM - OLLAMA</span>"
+    ]
   }
 ]
