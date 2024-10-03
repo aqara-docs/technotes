@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Technotes - 3&nbsp; 고객 서비스 업무 관련 구글 시트 연동</title>
+<title>Technotes - 9&nbsp; 네이버 아카라 카페 웹크롤링</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ollama.html" rel="next">
-<link href="./platform.html" rel="prev">
+<link href="./channeltalk.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./googlesheets.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">고객 서비스 업무 관련 구글 시트 연동</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./naver_aqaracafe.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">네이버 아카라 카페 웹크롤링</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -126,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./googlesheets.html" class="sidebar-item-text sidebar-link active">
+  <a href="./googlesheets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">고객 서비스 업무 관련 구글 시트 연동</span></span></a>
   </div>
 </li>
@@ -162,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./naver_aqaracafe.html" class="sidebar-item-text sidebar-link">
+  <a href="./naver_aqaracafe.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">네이버 아카라 카페 웹크롤링</span></span></a>
   </div>
 </li>
@@ -176,19 +175,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#목적" id="toc-목적" class="nav-link active" data-scroll-target="#목적"><span class="header-section-number">3.1</span> 목적</a></li>
-  <li><a href="#준비-사항" id="toc-준비-사항" class="nav-link" data-scroll-target="#준비-사항"><span class="header-section-number">3.2</span> 준비 사항</a></li>
-  <li><a href="#코드-분석" id="toc-코드-분석" class="nav-link" data-scroll-target="#코드-분석"><span class="header-section-number">3.3</span> 코드 분석</a>
-  <ul class="collapse">
-  <li><a href="#공통-주요-정보" id="toc-공통-주요-정보" class="nav-link" data-scroll-target="#공통-주요-정보"><span class="header-section-number">3.3.1</span> 공통 주요 정보</a></li>
-  <li><a href="#수거-신청-대장" id="toc-수거-신청-대장" class="nav-link" data-scroll-target="#수거-신청-대장"><span class="header-section-number">3.3.2</span> 수거 신청 대장</a></li>
-  <li><a href="#토탈-설치-서비스" id="toc-토탈-설치-서비스" class="nav-link" data-scroll-target="#토탈-설치-서비스"><span class="header-section-number">3.3.3</span> 토탈 설치 서비스</a></li>
-  <li><a href="#맞춤형-커튼-설치" id="toc-맞춤형-커튼-설치" class="nav-link" data-scroll-target="#맞춤형-커튼-설치"><span class="header-section-number">3.3.4</span> 맞춤형 커튼 설치</a></li>
-  <li><a href="#도어락-설치업체-배정" id="toc-도어락-설치업체-배정" class="nav-link" data-scroll-target="#도어락-설치업체-배정"><span class="header-section-number">3.3.5</span> 도어락 설치업체 배정</a></li>
-  <li><a href="#도어락-설치-파트너" id="toc-도어락-설치-파트너" class="nav-link" data-scroll-target="#도어락-설치-파트너"><span class="header-section-number">3.3.6</span> 도어락 설치 파트너</a></li>
-  <li><a href="#도어락-불량-등록" id="toc-도어락-불량-등록" class="nav-link" data-scroll-target="#도어락-불량-등록"><span class="header-section-number">3.3.7</span> 도어락 불량 등록</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">3.3.8</span> </a></li>
-  </ul></li>
+  <li><a href="#환경-변수-설정-및-mysql.-연결" id="toc-환경-변수-설정-및-mysql.-연결" class="nav-link active" data-scroll-target="#환경-변수-설정-및-mysql.-연결"><span class="header-section-number">9.1</span> 환경 변수 설정 및 MySQL. 연결</a></li>
+  <li><a href="#네이버-카페-크롤링-클래스-정의" id="toc-네이버-카페-크롤링-클래스-정의" class="nav-link" data-scroll-target="#네이버-카페-크롤링-클래스-정의"><span class="header-section-number">9.2</span> 네이버 카페 크롤링 클래스 정의</a></li>
+  <li><a href="#로그인-함수" id="toc-로그인-함수" class="nav-link" data-scroll-target="#로그인-함수"><span class="header-section-number">9.3</span> 로그인 함수</a></li>
+  <li><a href="#페이지-크롤링-함수" id="toc-페이지-크롤링-함수" class="nav-link" data-scroll-target="#페이지-크롤링-함수"><span class="header-section-number">9.4</span> 페이지 크롤링 함수</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">9.5</span> </a></li>
+  <li><a href="#mysql-저장-함수" id="toc-mysql-저장-함수" class="nav-link" data-scroll-target="#mysql-저장-함수"><span class="header-section-number">9.6</span> MySQL 저장 함수</a></li>
+  <li><a href="#크롤러-실행" id="toc-크롤러-실행" class="nav-link" data-scroll-target="#크롤러-실행"><span class="header-section-number">9.7</span> 크롤러 실행</a></li>
   </ul>
 </nav>
     </div>
@@ -197,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">고객 서비스 업무 관련 구글 시트 연동</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">네이버 아카라 카페 웹크롤링</span></h1>
 </div>
 
 
@@ -214,292 +207,119 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="목적" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="목적"><span class="header-section-number">3.1</span> 목적</h2>
-<ul>
-<li>본 문서는 고객 서비스 업무 관련 구글 시트 연동 방법을 기술한 문서입니다.</li>
-<li>구글 시트 문서는 다음과 같다.
-<ul>
-<li>수거 신청 대장</li>
-<li>토탈설치_피엘이엔지_배정_2024하반기</li>
-<li>맞춤커튼_엘엠엑스텍_배정_2024하반기</li>
-<li>설치 업체 배정_하반기 (도어락)</li>
-<li>K100 불량 및 문의 접수표_진행중</li>
-</ul></li>
-</ul>
-</section>
-<section id="준비-사항" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="준비-사항"><span class="header-section-number">3.2</span> 준비 사항</h2>
-<ul>
-<li>참고 사이트: <a href="https://develop-davi-kr.tistory.com/entry/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B5%AC%EA%B8%80-%EC%8A%A4%ED%94%84%EB%A0%88%EB%93%9C%EC%8B%9C%ED%8A%B8-%EC%97%B0%EB%8F%99-%EB%B0%8F-%EC%9E%90%EB%8F%99%ED%99%94-%EB%B0%A9%EB%B2%95#google_vignette" class="uri">https://develop-davi-kr.tistory.com/entry/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B5%AC%EA%B8%80-%EC%8A%A4%ED%94%84%EB%A0%88%EB%93%9C%EC%8B%9C%ED%8A%B8-%EC%97%B0%EB%8F%99-%EB%B0%8F-%EC%9E%90%EB%8F%99%ED%99%94-%EB%B0%A9%EB%B2%95#google_vignette</a></li>
-</ul>
-<!-- -->
-<ul>
-<li><p>구글 클라우드 서비스 가입 및 서비스 계정 생성 (<a href="https://console.cloud.google.com/apis/dashboard" class="uri">https://console.cloud.google.com/apis/dashboard</a>)</p>
-<ul>
-<li><p>사용자 인증 정보 &gt;&gt; 프로젝트 만들기</p></li>
-<li><p>사장자 인증 정보 만들기 &gt;&gt; 서비스 계정 생성</p></li>
-<li><p>서비스 계정의 이메일 정보 클릭 &gt;&gt; 키 생성</p></li>
-<li><p>비공개 키를 컴퓨터에 저장(json파일)</p></li>
-<li><p>서비스 계정에 생성된 이메일을 구글시트에서 공유 대상으로 지정</p></li>
-</ul></li>
-<li><p>구글 시트 API 연동</p>
-<ul>
-<li>API 및 서비스 &gt;&gt; 라이브러리 클릭 &gt;&gt; Google Sheet 검색 &gt;&gt; Google Sheets API 클릭 &gt;&gt; API 사용 클릭</li>
-</ul></li>
-</ul>
-</section>
-<section id="코드-분석" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="코드-분석"><span class="header-section-number">3.3</span> 코드 분석</h2>
-<section id="공통-주요-정보" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="공통-주요-정보"><span class="header-section-number">3.3.1</span> 공통 주요 정보</h3>
-<section id="env-파일에서-환경-변수-로드" class="level4" data-number="3.3.1.1">
-<h4 data-number="3.3.1.1" class="anchored" data-anchor-id="env-파일에서-환경-변수-로드"><span class="header-section-number">3.3.1.1</span> .env 파일에서 환경 변수 로드</h4>
-<pre class="{bash}"><code>#from dotenv import load_dotenv
-#import os
-#load_dotenv()</code></pre>
-</section>
-<section id="google-sheets-api-인증-및-데이터-로드" class="level4" data-number="3.3.1.2">
-<h4 data-number="3.3.1.2" class="anchored" data-anchor-id="google-sheets-api-인증-및-데이터-로드"><span class="header-section-number">3.3.1.2</span> Google Sheets API 인증 및 데이터 로드</h4>
-<ul>
-<li><p>구글 시트 스프레드시트 ID: “d/”와 “/edit”사이의 문자</p>
-<ul>
-<li>예제&gt; <a href="https://docs.google.com/spreadsheets/d/1_F68huN_fdCXRQWZgkPvqBysiZh9Argb8ebBid-5lVE/edit?gid=1340096902#gid=1340096902">https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxxxxx/edit?gid=xxxxx#gid=</a>xxxxxxxx</li>
-</ul></li>
-</ul>
-<pre class="{bash}"><code>#from google.oauth2.service_account import Credentials
-#import gspread
-# Path to your service account JSON file
-#SERVICE_ACCOUNT_FILE = os.getenv('SERVICE_ACCOUNT_FILE')
+<section id="환경-변수-설정-및-mysql.-연결" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="환경-변수-설정-및-mysql.-연결"><span class="header-section-number">9.1</span> 환경 변수 설정 및 MySQL. 연결</h2>
+<pre class="{bash}"><code>
+from dotenv import load_dotenv
+load_dotenv()
 
-# Load credentials from the JSON file
-#creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=[os.getenv('SCOPES')])
+db_config = {
+    'user': os.getenv('SQL_USER'),
+    'password': os.getenv('SQL_PASSWORD'),
+    'host': os.getenv('SQL_HOST'),
+    'database': os.getenv('SQL_DATABASE'),
+    'charset': 'utf8mb4',
+    'collation': 'utf8mb4_general_ci'
+}</code></pre>
+<ul>
+<li><p>dotenv 라이브러리를 사용해 .env 파일에서 MySQL 및 네이버 카페 로그인 관련 환경 변수를 불러온다.</p></li>
+<li><p>이를 통해 MySQL에 연결할 때 필요한 정보를 제공한다.</p></li>
+</ul>
+</section>
+<section id="네이버-카페-크롤링-클래스-정의" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="네이버-카페-크롤링-클래스-정의"><span class="header-section-number">9.2</span> 네이버 카페 크롤링 클래스 정의</h2>
+<pre class="{bash}"><code>class NaverCafeCrawler:
+    def __init__(self, driver_path, url, id, pw, baseurl, clubid, userDisplay, boardType, db_config):
+        self.total_list = ['registered_date', 'devices', 'title', 'question', 'answers']
+        self.driver_path = driver_path
+        self.url = url
+        self.id = id
+        self.pw = pw
+        self.baseurl = baseurl
+        self.clubid = clubid
+        self.userDisplay = userDisplay
+        self.boardType = boardType
+        self.db_config = db_config</code></pre>
+<ul>
+<li><p>NaverCafeCrawler 클래스는 크롤링의 주요 기능을 수행한다.</p></li>
+<li><p>클래스는 로그인 정보, 크롤링할 URL, MySQL 연결 정보 등을 초기화한다.</p></li>
+</ul>
+</section>
+<section id="로그인-함수" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="로그인-함수"><span class="header-section-number">9.3</span> 로그인 함수</h2>
+<pre class="{bash}"><code>def login(self, browser):
+    browser.get(self.url)
+    browser.implicitly_wait(2)
+    browser.execute_script(f"document.getElementsByName('id')[0].value='{self.id}'")
+    browser.execute_script(f"document.getElementsByName('pw')[0].value='{self.pw}'")
+    browser.find_element(By.XPATH, '//*[@id="log.login"]').click()
+    time.sleep(1)</code></pre>
+<ul>
+<li><p>네이버 카페에 자동으로 로그인하는 기능이다.</p></li>
+<li><p>Selenium을 사용해 ID와 비밀번호를 입력하고 로그인 버튼을 클릭한다.</p></li>
+</ul>
+</section>
+<section id="페이지-크롤링-함수" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="페이지-크롤링-함수"><span class="header-section-number">9.4</span> 페이지 크롤링 함수</h2>
+<pre class="{bash}"><code>def crawl_page(self, browser, page_num):
+    browser.get(f"{self.baseurl}ArticleList.nhn?search.clubid={self.clubid}&amp;userDisplay={self.userDisplay}&amp;search.boardType={self.boardType}&amp;search.page={page_num}")
+    browser.switch_to.frame('cafe_main')
+    soup = bs(browser.page_source, 'html.parser')
+    datas = soup.find_all(class_='td_article')
+    ...</code></pre>
+<ul>
+<li><p>지정된 페이지 번호의 게시글 목록을 크롤링한다.</p></li>
+<li><p>Selenium을 사용해 카페 게시판의 특정 페이지로 이동하고, BeautifulSoup을 사용해 게시글의 제목, 카테고리, 링크 등을 파싱한다.</p></li>
+</ul>
+</section>
+<section id="section" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="section"><span class="header-section-number">9.5</span> </h2>
+<p>게시글 상세 내용 크롤링</p>
+<pre class="{bash}"><code>def get_content(self, browser, link):
+    browser.get(link)
+    time.sleep(1)
+    browser.switch_to.frame('cafe_main')
+    soup = bs(browser.page_source, 'html.parser')
+    content_text = soup.find("div", {"class": "article_viewer"}).get_text().strip() if content else ""
+    ...</code></pre>
+<ul>
+<li><p>각 게시글의 링크로 이동하여 상세 내용을 크롤링한다.</p></li>
+<li><p>게시글의 본문 내용과 등록 날짜, 댓글(답변)을 추출한다.</p></li>
+</ul>
+</section>
+<section id="mysql-저장-함수" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="mysql-저장-함수"><span class="header-section-number">9.6</span> MySQL 저장 함수</h2>
+<pre class="{bash}"><code>def save_to_mysql(self, df):
+    conn = mysql.connector.connect(**self.db_config)
+    cursor = conn.cursor()
 
-# Connect to Google Sheets
-#gc = gspread.authorize(creds)
+    for _, row in df.iterrows():
+        check_sql = "SELECT COUNT(*) FROM aqara_cafe WHERE registered_date = %s AND title = %s"
+        cursor.execute(check_sql, (row['registered_date'], row['title']))
+        result = cursor.fetchone()
 
-# Google Sheet ID and Worksheet name
-#SERVICE_SPREADSHEET_ID = os.getenv('SERVICE_SPREADSHEET_ID')
-#SERVICE_WORKSHEET_NAME = os.getenv('SERVICE_WORKSHEET_NAME')  # Replace with your worksheet name</code></pre>
-<ul>
-<li><p><strong>Google Sheets API 인증</strong>: Google Sheets API를 사용하기 위해 JSON 자격 증명 파일을 통해 인증을 수행합니다.</p></li>
-<li><p>gspread <strong>라이브러리</strong>: Google Sheets의 데이터에 접근하기 위한 Python 라이브러리로, authorize() 메서드를 사용해 Google Sheets에 접근합니다.</p></li>
-</ul>
-</section>
-</section>
-<section id="수거-신청-대장" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="수거-신청-대장"><span class="header-section-number">3.3.2</span> 수거 신청 대장</h3>
-<section id="구글-시트-데이터-로딩-및-정리" class="level4" data-number="3.3.2.1">
-<h4 data-number="3.3.2.1" class="anchored" data-anchor-id="구글-시트-데이터-로딩-및-정리"><span class="header-section-number">3.3.2.1</span> 구글 시트 데이터 로딩 및 정리</h4>
-<pre class="{bash}"><code>#def load_sheet_data():
-#    worksheet = gc.open_by_key(SERVICE_SPREADSHEET_ID).worksheet(SERVICE_WORKSHEET_NAME)
-#    all_values = worksheet.get_all_values()
-#    headers = all_values[2]  # 3번째 줄을 헤더로 사용
-#    data = all_values[3:]    # 데이터는 4번째 줄부터 시작
-#    df = pd.DataFrame(data, columns=headers)
-#    df.replace('', np.nan, inplace=True)
-#    df.dropna(subset=['고객명'], inplace=True)
-#    df.columns = make_unique_columns(list(df.columns))
-#    return df
-</code></pre>
-<ul>
-<li><p><strong>목적</strong>: Google Sheets에서 데이터를 불러와 Pandas DataFrame으로 변환합니다.</p></li>
-<li><p><strong>주요 동작</strong>:</p>
-<p>• 첫 두 줄을 건너뛰고, 3번째 줄을 헤더로 사용하며 4번째 줄부터 데이터를 불러옵니다.</p>
-<p>• 빈 문자열을 NaN으로 대체하고, ‘고객명’ 열이 비어있는 행은 제거합니다.</p>
-<p>• make_unique_columns(): 중복된 열 이름이 있을 경우, 이를 고유하게 변경합니다.sk</p></li>
-</ul>
-</section>
-<section id="날짜-파싱-및-형식화" class="level4" data-number="3.3.2.2">
-<h4 data-number="3.3.2.2" class="anchored" data-anchor-id="날짜-파싱-및-형식화"><span class="header-section-number">3.3.2.2</span> 날짜 파싱 및 형식화</h4>
-<pre class="{bash}"><code>#for idx, row in df.iterrows():
-#    date_str = row['작성일']
-#    if pd.isna(date_str):
-#        continue
-#    try:
-#        if re.match(r'^\d{4}\.\d{1,2}\.\d{1,2}$', date_str):
-#            df.at[idx, 'registered_date'] = pd.to_datetime(date_str, format='%Y.%m.%d')
-# 추가적인 정규 표현식 패턴들
-#    except Exception as e:
-#        df.at[idx, 'registered_date'] = None</code></pre>
-<ul>
-<li><p><strong>목적</strong>: 다양한 날짜 형식을 표준화된 날짜 형식으로 변환합니다.</p>
-<p>• <strong>정규 표현식 매칭</strong>: 다양한 날짜 형식을 re.match()로 탐지한 후, 이를 pd.to_datetime()을 사용해 변환합니다.</p>
-<p>• <strong>오류 처리</strong>: 만약 변환에 실패하거나 형식이 일치하지 않으면 날짜를 None으로 설정합니다.</p></li>
-</ul>
-</section>
-</section>
-<section id="토탈-설치-서비스" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="토탈-설치-서비스"><span class="header-section-number">3.3.3</span> 토탈 설치 서비스</h3>
-<section id="pandas-dataframe으로-데이터-처리" class="level4" data-number="3.3.3.1">
-<h4 data-number="3.3.3.1" class="anchored" data-anchor-id="pandas-dataframe으로-데이터-처리"><span class="header-section-number">3.3.3.1</span> Pandas DataFrame으로 데이터 처리</h4>
-<pre class="{bash}"><code>#df = pd.DataFrame(data[2:], columns=[
-#    'registered_date', '출고날짜', '고객명', '연락처', '주문번호', '주소', '구매품목',
-#    '도어락', '도어벨', '조명스위치', '커튼', '내용확인', '기사님성함', '해피콜예정일', 
-#    '설치예정일', '설치완료여부', '유상', '비고_아카라', '비고_피엘'
-#])</code></pre>
-<ul>
-<li><p><strong>목적</strong>: Google Sheets에서 불러온 데이터를 Pandas DataFrame으로 변환합니다.</p></li>
-<li><p><strong>컬럼 지정</strong>: 3번째 행부터 데이터를 읽고, 컬럼을 수동으로 지정해 DataFrame을 구성합니다.</p></li>
-</ul>
-</section>
-<section id="데이터-형식-변환-및-처리" class="level4" data-number="3.3.3.2">
-<h4 data-number="3.3.3.2" class="anchored" data-anchor-id="데이터-형식-변환-및-처리"><span class="header-section-number">3.3.3.2</span> 데이터 형식 변환 및 처리</h4>
-<ul>
-<li>날짜 변환: 날짜 형식의 데이터를 pd.to_datetime()을 사용해 변환하며, 변환이 불가능한 값은 NaT로 설정합니다.</li>
-</ul>
-<pre class="{bash}"><code>#df['registered_date'] = pd.to_datetime(df['registered_date'], errors='coerce')
-#df['출고날짜'] = pd.to_datetime(df['출고날짜'], errors='coerce')
-#df['해피콜예정일'] = pd.to_datetime(df['해피콜예정일'], errors='coerce')
-#df['설치예정일'] = pd.to_datetime(df['설치예정일'], errors='coerce')</code></pre>
-<ul>
-<li>숫자형 변환</li>
-</ul>
-<pre class="{bash}"><code>#boolean_columns = ['내용확인', '설치완료여부']
-#for col in boolean_columns:
-#    df[col] = df[col].apply(lambda x: True if x.lower() == 'true' else False)</code></pre>
-<ul>
-<li>불리언 값 처리: 불리언 값을 처리해 ‘true’ 값을 True로, 그 외 값을 False로 변환합니다.</li>
-</ul>
-</section>
-</section>
-<section id="맞춤형-커튼-설치" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="맞춤형-커튼-설치"><span class="header-section-number">3.3.4</span> 맞춤형 커튼 설치</h3>
-<section id="데이터-전처리" class="level4" data-number="3.3.4.1">
-<h4 data-number="3.3.4.1" class="anchored" data-anchor-id="데이터-전처리"><span class="header-section-number">3.3.4.1</span> 데이터 전처리</h4>
-<pre class="{bash}"><code>#data = [row[:17] for row in data]
-#header = data[0]
-#df = pd.DataFrame(data[1:], columns=header)
-
-#df.rename(columns={'665': '플랫폼', '날짜': 'registered_date'}, inplace=True)
-#df = df[df['플랫폼'].notna() &amp; df['플랫폼'].str.strip().astype(bool) &amp;
-#        df['상품주문번호'].notna() &amp; df['상품주문번호'].str.strip().astype(bool) &amp;
-#        (df['상품주문번호'] != '본사 촬영용')]
-
-#df.reset_index(drop=True, inplace=True)</code></pre>
-<ul>
-<li><p><strong>데이터 전처리</strong>: 불필요한 컬럼을 제외하고 첫 17개의 컬럼만 선택합니다.</p></li>
-<li><p><strong>컬럼명 변경</strong>: ’665’라는 컬럼명을 ’플랫폼’으로, ’날짜’라는 컬럼명을 ’registered_date’로 변경합니다.</p></li>
-<li><p><strong>필터링</strong>: ‘플랫폼’과 ‘상품주문번호’가 비어 있지 않은 행만 필터링하고, ‘본사 촬영용’ 데이터를 제외합니다.</p></li>
-<li><p><strong>인덱스 초기화</strong>: 불필요한 인덱스를 제거하고 새로 설정합니다.</p></li>
-</ul>
-</section>
-<section id="날짜-처리" class="level4" data-number="3.3.4.2">
-<h4 data-number="3.3.4.2" class="anchored" data-anchor-id="날짜-처리"><span class="header-section-number">3.3.4.2</span> 날짜 처리</h4>
-<pre class="{bash}"><code>#def adjust_year(date_str, index):
-#    try:
-#        date_obj = datetime.strptime(date_str, "%m/%d")
-#    except ValueError:
-#        return None
+        if result[0] == 0:
+            insert_sql = "INSERT INTO aqara_cafe (registered_date, devices, title, question, answers) VALUES (%s, %s, %s, %s, %s)"
+            cursor.execute(insert_sql, tuple(row))
     
-#    if index &lt;= 262:
-#        return date_obj.replace(year=2023)
-#    else:
-#        return date_obj.replace(year=2024)
-
-#df['registered_date'] = df.apply(lambda row: adjust_year(row['registered_date'], row.name), #axis=1)</code></pre>
+    conn.commit()
+    cursor.close()
+    conn.close()</code></pre>
 <ul>
-<li><p><strong>날짜 조정</strong>: 날짜가 “월/일” 형식일 때 해당하는 연도를 인덱스에 따라 다르게 설정합니다.</p></li>
-<li><p>인덱스가 262 이하일 경우 2023년, 그 외에는 2024년으로 연도를 설정합니다.</p></li>
+<li><p>크롤링한 데이터를 DataFrame으로 받아 MySQL 데이터베이스에 저장하는 기능이다.</p></li>
+<li><p>중복된 데이터를 방지하기 위해 registered_date와 title을 기준으로 이미 데이터가 존재하는지 확인한 후, 존재하지 않으면 데이터를 삽입한다.</p></li>
 </ul>
 </section>
-</section>
-<section id="도어락-설치업체-배정" class="level3" data-number="3.3.5">
-<h3 data-number="3.3.5" class="anchored" data-anchor-id="도어락-설치업체-배정"><span class="header-section-number">3.3.5</span> 도어락 설치업체 배정</h3>
-<section id="데이터-전처리-1" class="level4" data-number="3.3.5.1">
-<h4 data-number="3.3.5.1" class="anchored" data-anchor-id="데이터-전처리-1"><span class="header-section-number">3.3.5.1</span> 데이터 전처리</h4>
-<pre class="{bash}"><code>#df = pd.DataFrame(data[1:])
-#df = df.iloc[:,1:22]
-#required_columns =[
-#    'registered_date', '주문처', '지역1', '지역2', '지점', '설치', '기사연락처', '비용', #'청구월', '증빙유형', 
-#    '추가비용', '청구월2', '지급기안', '설치여부', '이름', '연락처', '주소', '상품명', #'상품옵션', '배송메시지', '특이사항'
-#]
-#df.columns = required_columns</code></pre>
+<section id="크롤러-실행" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="크롤러-실행"><span class="header-section-number">9.7</span> 크롤러 실행</h2>
+<pre class="{bash}"><code>crawler = NaverCafeCrawler(driver_path, url, id, pw, baseurl, clubid, userDisplay, boardType, db_config)
+crawler.run(max_pages=params_pages)</code></pre>
 <ul>
-<li><p><strong>데이터 프레임 생성</strong>: Google Sheets에서 가져온 데이터를 Pandas DataFrame으로 변환합니다.</p></li>
-<li><p><strong>필요한 컬럼 설정</strong>: 필요한 21개의 열을 선택하고, 컬럼 이름을 적절하게 설정합니다.</p></li>
+<li><p>설정된 매개변수로 크롤링을 실행한다.</p></li>
+<li><p>최대 페이지 수(max_pages) 만큼 페이지를 순차적으로 크롤링하고, 데이터를 CSV로 저장한 후 MySQL로 전송한다.</p></li>
 </ul>
-</section>
-<section id="날짜-형식-변환" class="level4" data-number="3.3.5.2">
-<h4 data-number="3.3.5.2" class="anchored" data-anchor-id="날짜-형식-변환"><span class="header-section-number">3.3.5.2</span> 날짜 형식 변환</h4>
-<pre class="{bash}"><code>#def parse_registered_date(date_str):
-#    date_formats = ['%Y/ %m/ %d', '%Y/%m/%d', '%Y. %m. %d','%Y. %m.%d']
-#    for date_format in date_formats:
-#        try:
-#            return pd.to_datetime(date_str, format=date_format, errors='raise')
-#        except (ValueError, TypeError):
-#            continue
-#    return None
-#df['registered_date'] = df['registered_date'].apply(parse_registered_date)</code></pre>
-<ul>
-<li>parse_registered_date() <strong>함수</strong>: 다양한 날짜 형식을 처리할 수 있도록 여러 날짜 포맷을 시도하여 문자열을 datetime 형식으로 변환합니다.</li>
-</ul>
-</section>
-<section id="비용-값-처리" class="level4" data-number="3.3.5.3">
-<h4 data-number="3.3.5.3" class="anchored" data-anchor-id="비용-값-처리"><span class="header-section-number">3.3.5.3</span> 비용 값 처리</h4>
-<pre class="{bash}"><code>#def clean_cost_value(value):
-#    if isinstance(value, str):
-#        cleaned_value = value.replace('₩', '').replace(',', '')
-#        if cleaned_value.isdigit():
-#            return float(cleaned_value)
-#        else:
-#            return None
-#    return None if pd.isna(value) else value</code></pre>
-<ul>
-<li><strong>비용 값 처리</strong>: ‘₩’ 및 ’,’를 제거하고, 숫자로 변환 가능한 값을 float 형식으로 변환합니다. 값이 숫자가 아니면 None으로 반환합니다.</li>
-</ul>
-</section>
-</section>
-<section id="도어락-설치-파트너" class="level3" data-number="3.3.6">
-<h3 data-number="3.3.6" class="anchored" data-anchor-id="도어락-설치-파트너"><span class="header-section-number">3.3.6</span> 도어락 설치 파트너</h3>
-<section id="데이터-전처리-2" class="level4" data-number="3.3.6.1">
-<h4 data-number="3.3.6.1" class="anchored" data-anchor-id="데이터-전처리-2"><span class="header-section-number">3.3.6.1</span> 데이터 전처리</h4>
-<pre class="{bash}"><code># Add 'registered_date' column
-#registered_date = pd.to_datetime('2024.02.19')
-#df.insert(0, 'registered_date', registered_date)
-
-# 컬럼명 설정
-#required_columns = ['registered_date', '지역1', '지역2', '대리점', '담당자코드', '대표', #'연락처', '주소', '사업자등록번호', '은행', '계좌', '소유자명', '세금계산서', '플라자', #'기타']
-#df.columns = required_columns
-
-# '연락처'가 없는 행 제거 및 NaN 값을 None으로 변환
-#df['연락처'] = df['연락처'].replace(r'^\s*$', np.nan, regex=True)
-#df = df.dropna(subset=['연락처'])
-#df = df.replace({np.nan: None})</code></pre>
-<ul>
-<li><p>등록 날짜(registered_date)를 특정 날짜로 추가합니다.</p></li>
-<li><p>필요한 컬럼을 지정하고 데이터 정리 및 빈 칸 처리를 수행합니다.</p></li>
-<li><p>NaN 값을 Python의 None 값으로 변환하여 SQL 삽입 시 문제가 발생하지 않도록 합니다.</p></li>
-</ul>
-</section>
-</section>
-<section id="도어락-불량-등록" class="level3" data-number="3.3.7">
-<h3 data-number="3.3.7" class="anchored" data-anchor-id="도어락-불량-등록"><span class="header-section-number">3.3.7</span> 도어락 불량 등록</h3>
-<section id="pandas-dataframe-생성" class="level4" data-number="3.3.7.1">
-<h4 data-number="3.3.7.1" class="anchored" data-anchor-id="pandas-dataframe-생성"><span class="header-section-number">3.3.7.1</span> Pandas DataFrame 생성</h4>
-<pre class="{bash}"><code>#data = sheet.get_all_values()
-#df = pd.DataFrame(data[6:])  # 데이터는 7번째 행부터 시작
-#df = df.iloc[:, 2:14]  # 3번째 열부터 14번째 열까지 사용
-#df.columns = required_columns  # 필수 열 설정</code></pre>
-<ul>
-<li>Google Sheets에서 가져온 데이터를 <strong>Pandas DataFrame</strong>으로 변환하고, 필요한 열만 선택하여 사용합니다.</li>
-</ul>
-</section>
-<section id="데이터-전처리-3" class="level4" data-number="3.3.7.2">
-<h4 data-number="3.3.7.2" class="anchored" data-anchor-id="데이터-전처리-3"><span class="header-section-number">3.3.7.2</span> 데이터 전처리</h4>
-<pre class="{bash}"><code>#df['registered_date'] = pd.to_datetime(df['registered_date'], errors='coerce')
-#df = df.replace("", None)
-#df = df.dropna(subset=['고객명', '고객불량증상'], how='all')</code></pre>
-<ul>
-<li>날짜 형식을 변환하고, 빈 문자열을 None으로 바꾸며, 고객명과 고객불량증상이 비어 있는 행은 삭제합니다.</li>
-</ul>
-</section>
-</section>
-<section id="section" class="level3" data-number="3.3.8">
-<h3 data-number="3.3.8" class="anchored" data-anchor-id="section"><span class="header-section-number">3.3.8</span> </h3>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -914,14 +734,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./platform.html" class="pagination-link" aria-label="플랫폼 연동 문서 업데이트">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">플랫폼 연동 문서 업데이트</span></span>
+      <a href="./channeltalk.html" class="pagination-link" aria-label="채널톡 API 연동">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">채널톡 API 연동</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ollama.html" class="pagination-link" aria-label="Local LLM - OLLAMA">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Local LLM - OLLAMA</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
